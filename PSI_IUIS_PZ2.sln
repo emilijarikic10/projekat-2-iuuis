@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkService", "NetworkService\NetworkService.csproj", "{1B4B656E-44A4-4B67-A05E-7478419F7FF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeteringSimulator", "MeteringSimulator\MeteringSimulator.csproj", "{968C4A97-04F4-4F31-AC25-9F84EAD7B7F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B4B656E-44A4-4B67-A05E-7478419F7FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B4B656E-44A4-4B67-A05E-7478419F7FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B4B656E-44A4-4B67-A05E-7478419F7FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B4B656E-44A4-4B67-A05E-7478419F7FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968C4A97-04F4-4F31-AC25-9F84EAD7B7F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968C4A97-04F4-4F31-AC25-9F84EAD7B7F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968C4A97-04F4-4F31-AC25-9F84EAD7B7F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968C4A97-04F4-4F31-AC25-9F84EAD7B7F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EC48F42-0587-4CF6-B1C2-D5D1073B6964}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="NetworkService.View.NetworkDisplayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Model="clr-namespace:NetworkService.Model"
+             Loaded="UserControl_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Available servers"
+                   Style="{StaticResource SectionHeaderStyle}"
+                   VerticalAlignment="Center"
+                   Margin="6,0,0,0"/>
+
+        <WrapPanel Grid.Row="0"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="0,4,4,4">
+
+            <Border Background="#D6F5E1" CornerRadius="4" Padding="6,3" Margin="0,0,4,0">
+                <TextBlock Text="Normal" FontSize="11" FontWeight="Bold" Foreground="#2EA043"/>
+            </Border>
+            <Border Background="#FFDCDC" CornerRadius="4" Padding="6,3" Margin="0,0,12,0">
+                <TextBlock Text="Alarm" FontSize="11" FontWeight="Bold" Foreground="#DC2626"/>
+            </Border>
+
+            <Button Content="Auto" Width="70"
+                    ToolTip="Automatically place all remaining servers on the grid"
+                    Click="AutoPopulate_Click"/>
+
+            <Button Content="Connect" Width="85"
+                    ToolTip="Toggle connect mode: click two servers to draw a link between them"
+                    Click="ConnectMode_Click"/>
+
+            <Button Content="Save" Width="70"
+                    ToolTip="Save current grid layout to disk"
+                    Click="SaveLayout_Click"/>
+
+            <Button Content="Load" Width="70"
+                    ToolTip="Load a previously saved grid layout"
+                    Click="LoadLayout_Click"/>
+        </WrapPanel>
+
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Background="#F8FAFC"
+                CornerRadius="8"
+                BorderBrush="#D0D7DE"
+                BorderThickness="1"
+                Margin="5,0,8,5">
+
+            <TreeView x:Name="EntitiesTreeView"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Margin="6"
+                      AllowDrop="True"
+                      PreviewMouseLeftButtonDown="EntitiesTreeView_PreviewMouseLeftButtonDown"
+                      PreviewMouseMove="EntitiesTreeView_PreviewMouseMove"
+                      DragEnter="EntitiesTreeView_DragEnter"
+                      Drop="EntitiesTreeView_Drop">
+
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type Model:EntityTypeGroup}" ItemsSource="{Binding Entities}">
+                        <TextBlock Text="{Binding TypeName}"
+                                   FontWeight="Bold"
+                                   FontSize="14"
+                                   Foreground="#1E3A8A"
+                                   Margin="0,4,0,4"/>
+                    </HierarchicalDataTemplate>
+
+                    <DataTemplate DataType="{x:Type Model:ServerEntity}">
+                        <StackPanel Orientation="Horizontal" Margin="4,3,0,3">
+                            <TextBlock Text="{Binding Id}" Width="24" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Name}" Width="90"/>
+                            <TextBlock Text="{Binding Value, StringFormat='{}{0:0.0}%'}"
+                                       Foreground="{Binding StatusColor}"
+                                       FontWeight="Bold"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Margin="0,0,5,5">
+            <Grid>
+                <Canvas x:Name="LinesCanvas"
+                        IsHitTestVisible="False"/>
+
+                <UniformGrid x:Name="NetworkGrid"
+                             Rows="3"
+                             Columns="4"
+                             SizeChanged="NetworkGrid_SizeChanged">
+
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+                    <Border AllowDrop="True" Background="Transparent" MouseLeftButtonDown="Field_MouseLeftButtonDown" MouseMove="Field_MouseMove" DragEnter="Field_DragEnter" DragOver="Field_DragEnter" Drop="Field_Drop" MouseRightButtonDown="Field_RightClick" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Margin="6"/>
+
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
